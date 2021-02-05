@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+body{
+    background-color: #f5f5f5;
+}
+/*Material Forms*/
+.container {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,.5)
+}
+.formMat{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    width: 60%;
+    height: 80%;
+    padding: 17rem 0;
+    
+    background-color: #fff;
+}
+.formMat form{
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+    width: 90%;
+    height: 90%;
+}
+.formMat input{
+    margin-bottom: 1rem;
+    outline: none;
+    width: 100%;
+    padding:.5rem;
+}
+.formMat form .inputGroup{
+    width: 100%;
+}
+.formMat form .buttonGroup{
+    width: 100%;
+    display: flex;
+}
+
+.formMat form .buttonGroup a{
+    text-decoration: none;
+    text-align: center;
+    color: red;
+    padding: 1rem;
+    border:1px solid red;
+    width: 48%;
+    margin:.2rem;
+
+    transition: 300ms;
+}
+.formMat form .buttonGroup a:hover{
+    background-color: red;
+    color:#FFF;
+}
+
+.formMat form .buttonGroup button{
+    width: 48%;
+    padding: 1rem;
+    margin:.2rem;
+    background-color: #fff;
+
+    color:rgb(71, 201, 71);
+    border:1px solid rgb(71, 201, 71);
+
+    transition: 300ms;
+}
+.formMat form .buttonGroup button:hover{
+    background-color: rgb(71, 201, 71);
+
+    color: #FFF;
+}
+.formMat form .inputGroup select{
+    width: 100%;
+    padding: .3rem;
+}

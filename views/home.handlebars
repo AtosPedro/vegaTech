@@ -1,0 +1,76 @@
+<header>
+    <span>
+        <img src="images/logo.png" alt="logo vega tech">
+        <p>VegaTech</p>
+        
+    </span>
+
+    <ul>
+        <a href="/formsup"><li>Register Supplier</li></a>
+        <a href="/formmat"><li>Register Material</li></a>
+    </ul>
+</header>
+
+<main>
+    <section id="supplierContainer">
+        <h2>Suppliers</h2>
+        <div class="dataTable">
+            <ul>
+                {{#each supplier}}
+                    <li>
+                        <div class="textGroup">
+                            <p>CNPJ: <strong>{{dataValues.cnpj}}</strong> </p>
+                            <p>CEP: <strong>{{dataValues.cep}}</strong></p>
+                        </div>
+                        <div class="buttonGroup">
+                            <a href="/supdel/{{dataValues.supplier_id}}">
+                                <button class="btnRemove">Remove supplier</button> 
+                            </a>
+                            
+                            <a href="/updatesup/{{dataValues.supplier_id}}">
+                                <button class="btnUpdate">Update supplier</button> 
+                            </a>
+                        </div>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+
+    </section>
+    <section id="materialContainer">
+        <h2>Materials</h2>
+        
+        
+        <div class="materialDataTable">            
+            {{#each material }}
+                <div class="materialBox">                                        
+                    <div class="textGroup">
+                        <h3>{{this.dataValues.name}}</h3>
+                        <p>{{this.dataValues.code}}</p>
+                        <p>{{this.dataValues.description}}</p>
+                        <p>{{this.dataValues.supplier_id}}</p>  
+                        <p></p>
+                    </div>
+                    
+                    <div class="buttonGroup">
+
+                        <a href="/matdel/{{dataValues.material_id}}">
+                        <button type="submit">Delete Material</button>
+                        </a>
+
+                        <a href="/matup/{{dataValues.material_id}}">
+                        <button type="submit" class="btnUpdate">Update Material</button>
+                        </a>
+            
+                    </div>
+                   
+                </div>               
+            {{/each}}
+        </div>            
+    </section>
+
+</main>
+
+<footer>
+    <p>Desenvolvido por Atos Pedro</p>
+</footer>

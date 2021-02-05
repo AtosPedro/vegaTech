@@ -1,0 +1,28 @@
+
+<div class="container">
+    <div class="formSup">
+        <form action="/sup" method="POST">
+            <h2>Register Supplier</h2>
+            <div class="inputGroup">
+                <label for="supName">Name</label>
+                <input type="text" name="supName" id="supName" maxlength="20">
+            </div>
+
+            <div class="inputGroup">
+                <label for="supCnpj">CNPJ</label>
+                <input type="text" name="supCnpj" id="supCnpj" pattern=".{14}" required title="Field must be 14 characters long"  maxlength="14">
+            </div>
+
+            <div class="inputGroup">
+                <label for="supCep">CEP</label>
+                <input type="text" name="supCep" id="supCep" pattern=".{8}" required title="Field must be 8 characters long"  maxlength="8">
+            </div>
+
+            <div class="buttonGroup">
+                <button type="submit">Submit</button>
+                <a href="/">Cancel</a>
+            </div>
+
+        </form>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="formMat">
+        <form action="/matup/edit" method="POST">
+            <div class="inputGroup">
+                <label for="matSuppliers">Supplier</label>
+                <select name="matSuppliers" id="matSuppliers">
+                    {{#each supplier}}
+                        <option value="{{dataValues.supplier_id}}">{{dataValues.cnpj}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="inputGroup">
+                <label for="matCode">Code</label>
+                <input type="text" name="matCode" id="matCode">
+            </div>
+
+            <div class="inputGroup">
+                <label for="matName">Name</label>
+                <input type="text" name="matName" id="matName" maxlength="20">
+            </div>
+
+            <div class="inputGroup">
+                <label for="matDescription">Description</label>
+                <input type="text" name="matDescription" id="matDescription" maxlength="50">
+            </div>
+
+            <div class="inputGroup">
+                <label for="matFiscalCode">Fiscal Code</label>
+                <input type="text" name="matFiscalCode" id="matFiscalCode" maxlength="17">
+            </div>
+
+            <div class="inputGroup">
+                <label for="matSpecie">Specie</label>
+                <input type="text" name="matSpecie" id="matSpecie">
+            </div>
+            <div class="buttonGroup">
+                <button type="submit">Submit</button>
+                <a href="/">Cancel</a>
+            </div>
+            
+            <input type="hidden" name="upMaterialId" value="{{obj}}">
+        </form>
+    </div>
+</div>

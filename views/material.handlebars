@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="formMat">
+        <form action="/mat" method="POST">
+            <h2>Register Material</h2>
+            <div class="inputGroup">
+                <label for="matSuppliers">Supplier</label>
+                <select name="matSuppliers" id="matSuppliers"  title="You must have a supplier" required>
+                    {{#each supplier}}
+                        <option value="{{dataValues.supplier_id}}">{{dataValues.cnpj}}</option>
+                    {{/each}}
+                </select>
+                <small id="qrCodeContainer"> 
+                    
+                </small>
+            </div>
+            <div class="inputGroup">
+                <label for="matCode">Code</label>
+                <input type="text" name="matCode" id="matCode" required>
+            </div>
+            <div class="inputGroup">
+                <label for="matName">Name</label>
+                <input type="text" name="matName" id="matName" maxlength="20" required>
+            </div>
+            <div class="inputGroup">
+                <label for="matDescription">Description</label>
+                <input type="text" name="matDescription" id="matDescription" maxlength="50" required>
+            </div>
+            <div class="inputGroup">
+                <label for="matFiscalCode">Fiscal Code</label>
+                <input type="text" name="matFiscalCode" id="matFiscalCode"  pattern=".{4}" required title="Field must be 4 characters long" maxlength="4">
+            </div>
+            <div class="inputGroup">
+                <label for="matSpecie">Specie</label>
+                <input type="text" name="matSpecie" id="matSpecie" required>
+            </div>
+            <div class="buttonGroup">
+                
+                <button type="submit">Submit</button>
+
+                <a href="/">Cancel</a>
+            </div>
+
+
+            
+        </form>
+    </div>
+
+</div>
