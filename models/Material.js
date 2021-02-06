@@ -1,6 +1,6 @@
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
-const Supplier = require('./Supplier')
+
 
 
 module.exports = (sequelize, DataTypes)=>{

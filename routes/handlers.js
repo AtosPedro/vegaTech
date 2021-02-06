@@ -24,9 +24,7 @@ const Utils = {
     let date = `${today[0]}-${today[1]}-${today[2]} ${today[3]}:${today[4]}:${today[5]}`;
     return date;
   },
-  formatQrCode(qrCode) {
-    return qrCode.trim('%');
-  },
+
 };
 
 
@@ -53,11 +51,11 @@ router.get("/", (req, res) => {
     });
 });
 //Supplier Form route
-router.get("/formsup", (req, res) => {
-  res.render("supplier", {
-    style: "supplierForm.css",
-  });
-});
+router.get("/formsup", (req, res) => {  
+    res.render("supplier", {
+      style: "supplierForm.css",
+      listOfSuppliers: listOfSuppliers
+    })});
 //Add supplier route
 router.post("/sup", (req, res) => {
   var currentDate = new Date();
@@ -114,14 +112,12 @@ router.post("/updatesup/edit", (req, res) => {
 });
 //Material Form route
 router.get("/formmat", (req, res) => {
-  
 
   db.Supplier.findAll().then((supplier) => {
-    
-    res.render("material", {
-      supplier: supplier,
-      style: "materialForm.css",      
-    });
+      res.render('supplier', {
+        supplier: supplier,
+        style: 'supplierForm.css'
+      })
   });
 });
 //Add material route

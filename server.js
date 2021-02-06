@@ -13,7 +13,9 @@ const PORT = 8081;
 // configs
 
 //css
-app.use(express.static(__dirname + "/public/"));
+app.use(express.static("public/"));
+
+
 
 //template engine
 app.engine("handlebars", handlebars({ defaultLayout: "main" },handlebars({handlebars: allowInsecurePrototypeAccess(Handlebars)})));
@@ -33,11 +35,3 @@ db.sequelize.sync().then(()=>{
     });
 })
 
-Handlebars.registerHelper('isEuqualId', function (idIteration, idOption ) {
-    return idIteration == idOption;
-})
-Handlebars.registerHelper("if", function(conditional, options) {
-    if (conditional) {
-      return options.fn(this);
-    }
-  });

@@ -4,9 +4,13 @@
             <h2>Register Material</h2>
             <div class="inputGroup">
                 <label for="matSuppliers">Supplier</label>
-                <select name="matSuppliers" id="matSuppliers"  title="You must have a supplier" required>
+                <select name="matSuppliers" id="matSuppliers" title="You must have a supplier" required>
                     {{#each supplier}}
-                        <option value="{{dataValues.supplier_id}}">{{dataValues.cnpj}}</option>
+                        <option 
+                        value="{{dataValues.supplier_id}}" 
+                        >{{dataValues.name}}
+                        </option>
+
                     {{/each}}
                 </select>
                 <small id="qrCodeContainer"> 
@@ -46,3 +50,4 @@
     </div>
 
 </div>
+
