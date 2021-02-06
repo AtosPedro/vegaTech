@@ -53,8 +53,7 @@ router.get("/", (req, res) => {
 //Supplier Form route
 router.get("/formsup", (req, res) => {  
     res.render("supplier", {
-      style: "supplierForm.css",
-      listOfSuppliers: listOfSuppliers
+      style: "supplierForm.css",      
     })});
 //Add supplier route
 router.post("/sup", (req, res) => {
@@ -89,11 +88,12 @@ router.get("/updatesup/:id", (req, res) => {
   db.Supplier.findAll().then((supplier) => {
     res.render("updateSup", {
       obj: req.params.id,
-      supplier: { where: { supplier_id: req.params.id } },
-      style: "updateFormMaterial.css",
+      style: "updateFormSupplier.css",
     });
   });
 });
+
+
 router.post("/updatesup/edit", (req, res) => {
   db.Supplier.update(
     {
@@ -114,9 +114,9 @@ router.post("/updatesup/edit", (req, res) => {
 router.get("/formmat", (req, res) => {
 
   db.Supplier.findAll().then((supplier) => {
-      res.render('supplier', {
+      res.render('material', {
         supplier: supplier,
-        style: 'supplierForm.css'
+        style: 'materialForm.css'
       })
   });
 });

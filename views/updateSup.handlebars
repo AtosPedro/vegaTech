@@ -1,10 +1,9 @@
 <div class="formSup">
     <form action="/updatesup/edit" method="POST">
-    <h1>{{dataValues.supplier_id}}</h1>
 
         <div class="inputGroup">
             <label for="supName">Name</label>
-             <input type="text" name="supName" id="supName" maxlength="20">
+             <input type="text" name="supName" id="supName" maxlength="20" placeholder="new values">
         </div>
         <div class="inputGroup">            
             <label for="supCnpj">CNPJ</label>
@@ -20,6 +19,7 @@
 
         <input type="hidden" name="upSupplierId" value="{{obj}}">
         <button type="submit">Update</button> 
+        <a href="/">cancel</a>
 
     </form>
 </div>

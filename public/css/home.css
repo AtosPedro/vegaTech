@@ -215,3 +215,21 @@ footer{
     align-items:center;
     height:100px;
 }
+
+@media (min-width: 768px) {
+    header{
+        flex-direction: row;
+    }
+    header ul {
+        display: flex;
+        flex-direction: row;
+    
+        align-items: start;
+        justify-content: start;
+        width: 60%;
+        
+    }
+    header ul a{
+        width: 50%;
+    }
+}
