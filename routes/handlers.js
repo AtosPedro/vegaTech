@@ -120,6 +120,12 @@ router.get("/formmat", (req, res) => {
       })
   });
 });
+
+router.get('/api', (req, res) =>{
+  db.Supplier.findAll().then((supplier) => {
+    res.json(supplier);
+  })
+});
 //Add material route
 router.post("/mat", (req, res) => {
   db.Material.create({
