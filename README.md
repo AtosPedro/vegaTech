@@ -8,7 +8,7 @@ Projeto feito em NodeJS usando o express e o sequelize para a iteração com o b
 2. é necessário que vá no arquivo config.json encontrado na pasta config para fazer algumas alterações
 3. Lá o arquivo de encontrará desta maneira.
 
-###config.json
+### config.json
 ```
 {
   "development": {
@@ -63,7 +63,7 @@ node server.js
 6. A aplicação já está rodando, ela cria automaticamente as tabelas necessárias no banco.
 7. Agora apenas entre em [localhost:8081](http://localhost:8081) e utilize a aplicação.
 
-#OBSERVAÇÃO:
+# OBSERVAÇÃO:
 
 ## A porta 8081 está programada como padrão para rodar o server, caso ela esteja em uso é possivel trocar a porta no arquivo server.js na pasta raiz do projeto
 
