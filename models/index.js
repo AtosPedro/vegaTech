@@ -1,5 +1,5 @@
 'use strict';
-
+// DEFAULT CONFIG FILE CREATED BY THE SEQULIZE
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');

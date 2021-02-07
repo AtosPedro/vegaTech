@@ -10,24 +10,24 @@ const handlers = require("./routes/handlers");
 const db = require("./models");
 const PORT = 8081;
 
-// configs
+// CONFIGS SECTIONS
 
-//css
-app.use(express.static("public/"));
+    //css
+    app.use(express.static("public/"));
 
+    //template engine
+    app.engine("handlebars", handlebars({ defaultLayout: "main" },handlebars({handlebars: allowInsecurePrototypeAccess(Handlebars)})));
+    app.set("view engine", "handlebars");
 
+    //body parser
+    app.use(bodyParser.urlencoded({ extended: false }));
+    app.use(bodyParser.json());
 
-//template engine
-app.engine("handlebars", handlebars({ defaultLayout: "main" },handlebars({handlebars: allowInsecurePrototypeAccess(Handlebars)})));
-app.set("view engine", "handlebars");
-
-//body parser
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-//routes
+//ROUTES
 
 app.use("/", handlers);
+
+//THIS SECTION CREATES THE NECESSARY TABLES AND RUNS THE SERVER
 
 db.sequelize.sync().then(()=>{
     app.listen(PORT, ()=>{

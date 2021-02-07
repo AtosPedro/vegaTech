@@ -27,162 +27,163 @@ const Utils = {
 
 };
 
+//ROUTES
 
-
-//home
-router.get("/", (req, res) => {
-  db.Material.findAll()
-    .then((material) => {
-      db.Supplier.findAll()
-        .then((supplier) => {
-          
-          res.render("home", {
-            material: material,
-            supplier: supplier,                       
-            style: "home.css",
-          });
+//HOME ROUTE
+    router.get("/", (req, res) => {
+      db.Material.findAll()
+        .then((material) => {
+          db.Supplier.findAll()
+            .then((supplier) => {
+              
+              res.render("home", {
+                material: material,
+                supplier: supplier,                       
+                style: "home.css",
+              });
+            })
+            .catch((err) => {
+              Supplier.sync();
+            });
         })
-        .catch((err) => {
-          Supplier.sync();
+        .catch(() => {
+          Material.sync();
         });
-    })
-    .catch(() => {
-      Material.sync();
     });
-});
-//Supplier Form route
-router.get("/formsup", (req, res) => {  
-    res.render("supplier", {
-      style: "supplierForm.css",      
-    })});
-//Add supplier route
-router.post("/sup", (req, res) => {
-  var currentDate = new Date();
-  currentDate = Utils.formatDate(currentDate);
 
-  db.Supplier.create({
-    name: req.body.supName,
-    cnpj: req.body.supCnpj,
-    cep: req.body.supCep,
-    qrCode: `%${req.body.supCnpj}% - %${req.body.supCep}% / CAD.%${currentDate}%`,
-  })
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch((err) => {
-      res.send(err.message);
-    });
-});
-//delete supplier routes
-router.get("/supdel/:id", (req, res) => {
-  db.Supplier.destroy({ where: { supplier_id: req.params.id } })
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch((err) => {
-      res.send(err.message);
-    });
-});
-//update supplier routes
-router.get("/updatesup/:id", (req, res) => {
-  db.Supplier.findAll().then((supplier) => {
-    res.render("updateSup", {
-      obj: req.params.id,
-      style: "updateFormSupplier.css",
-    });
-  });
-});
+//SUPPLIERS ROUTES
+  //render the handlebars page 'formsup'
+  router.get("/formsup", (req, res) => {  
+      res.render("supplier", {
+        style: "supplierForm.css",      
+      })});
+  //Add supplier route
+  router.post("/sup", (req, res) => {
+    var currentDate = new Date();
+    currentDate = Utils.formatDate(currentDate);
 
-
-router.post("/updatesup/edit", (req, res) => {
-  db.Supplier.update(
-    {
+    db.Supplier.create({
+      name: req.body.supName,
       cnpj: req.body.supCnpj,
       cep: req.body.supCep,
-      name: req.body.supName,
-    },
-    { where: { supplier_id: req.body.upSupplierId } }
-  )
-    .then(() => {
-      res.redirect("/");
+      qrCode: `%${req.body.supCnpj}% - %${req.body.supCep}% / CAD.%${currentDate}%`,
     })
-    .catch((err) => {
-      res.send(err.message);
-    });
-});
-//Material Form route
-router.get("/formmat", (req, res) => {
-
-  db.Supplier.findAll().then((supplier) => {
-      res.render('material', {
-        supplier: supplier,
-        style: 'materialForm.css'
+      .then(() => {
+        res.redirect("/");
       })
+      .catch((err) => {
+        res.send(err.message);
+      });
   });
-});
+  //delete supplier routes
+  router.get("/supdel/:id", (req, res) => {
+    db.Supplier.destroy({ where: { supplier_id: req.params.id } })
+      .then(() => {
+        res.redirect("/");
+      })
+      .catch((err) => {
+        res.send(err.message);
+      });
+  });
+  //update supplier routes
+  router.get("/updatesup/:id", (req, res) => {
+    db.Supplier.findAll().then((supplier) => {
+      res.render("updateSup", {
+        obj: req.params.id,
+        style: "updateFormSupplier.css",
+      });
+    });
+  });
 
-router.get('/api', (req, res) =>{
-  db.Supplier.findAll().then((supplier) => {
-    res.json(supplier);
-  })
-});
-//Add material route
-router.post("/mat", (req, res) => {
-  db.Material.create({
-    code: req.body.matCode,
-    supplier_id: req.body.matSuppliers,
-    name: req.body.matName,
-    description: req.body.matDescription,
-    fiscalCode: req.body.matFiscalCode,
-    specie: req.body.matSpecie,
-  })
-    .then(() => {
-      res.redirect("/");
+  router.post("/updatesup/edit", (req, res) => {
+    db.Supplier.update(
+      {
+        cnpj: req.body.supCnpj,
+        cep: req.body.supCep,
+        name: req.body.supName,
+      },
+      { where: { supplier_id: req.body.upSupplierId } }
+    )
+      .then(() => {
+        res.redirect("/");
+      })
+      .catch((err) => {
+        res.send(err.message);
+      });
+  });
+
+//MATERIAL ROUTE
+
+//Material Form route
+  router.get("/formmat", (req, res) => {
+
+    db.Supplier.findAll().then((supplier) => {
+        res.render('material', {
+          supplier: supplier,
+          style: 'materialForm.css'
+        })
+    });
+  });
+  //route to return a JSON with the suppliers 
+  router.get('/api', (req, res) =>{
+    db.Supplier.findAll().then((supplier) => {
+      res.json(supplier);
     })
-    .catch((err) => {
-      res.send(err.message);
-    });
-});
-//update material route
-
-router.get("/matup/:id", (req, res) => {
-  db.Supplier.findAll().then((supplier) => {
-    res.render("updateMat", {
-      obj: req.params.id,
-      supplier: supplier,
-      style: "updateFormMaterial.css",
-    });
   });
-});
-router.post("/matup/edit", (req, res) => {
-  db.Material.update(
-    {
+  //Add material route
+  router.post("/mat", (req, res) => {
+    db.Material.create({
       code: req.body.matCode,
+      supplier_id: req.body.matSuppliers,
       name: req.body.matName,
       description: req.body.matDescription,
       fiscalCode: req.body.matFiscalCode,
       specie: req.body.matSpecie,
-    },
-    { where: { material_id: req.body.upMaterialId } }
-  )
-    .then(() => {
-      res.redirect("/");
     })
-    .catch((err) => {
-      res.send(err.message);
+      .then(() => {
+        res.redirect("/");
+      })
+      .catch((err) => {
+        res.send(err.message);
+      });
+  });
+  //update material route
+  router.get("/matup/:id", (req, res) => {
+    db.Supplier.findAll().then((supplier) => {
+      res.render("updateMat", {
+        obj: req.params.id,
+        supplier: supplier,
+        style: "updateFormMaterial.css",
+      });
     });
-});
-
-
-//Delete Material route
-router.get("/matdel/:id", (req, res) => {
-  db.Material.destroy({ where: { material_id: req.params.id } })
-    .then(() => {
-      res.redirect("/");
-    })
-    .catch((err) => {
-      res.send(err.message);
-    });
-});
+  });
+  router.post("/matup/edit", (req, res) => {
+    db.Material.update(
+      {
+        code: req.body.matCode,
+        name: req.body.matName,
+        description: req.body.matDescription,
+        fiscalCode: req.body.matFiscalCode,
+        specie: req.body.matSpecie,
+      },
+      { where: { material_id: req.body.upMaterialId } }
+    )
+      .then(() => {
+        res.redirect("/");
+      })
+      .catch((err) => {
+        res.send(err.message);
+      });
+  });
+  //Delete Material route
+  router.get("/matdel/:id", (req, res) => {
+    db.Material.destroy({ where: { material_id: req.params.id } })
+      .then(() => {
+        res.redirect("/");
+      })
+      .catch((err) => {
+        res.send(err.message);
+      });
+  });
 
 module.exports = router;

@@ -1,10 +1,7 @@
 var suppliers = {}
 var httpResponse = {}
 
-function showValue(){
-    console.log('hello')
-    
-}
+// Get the JSON from the route /api and stores in a variable, wheres the key is the supplier_id, and the value is the qrCode.
 function loadDoc() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -21,17 +18,8 @@ function loadDoc() {
   }
 loadDoc();
 
+// uses the variable 'suppliers' to populate one html element with the right qrCode 
 function selectOnChangeOption(){
     var select = document.getElementById("matSuppliers")
     document.getElementById("qrCodeContainer").innerHTML = suppliers[select.options[select.selectedIndex].value].replace(/%/g,"");
 }
-
-function setValue(){
-
-    loadDoc();
-
-    var select = document.getElementById("matSuppliers");
-
-     
-}
-setValue();
