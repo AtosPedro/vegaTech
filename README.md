@@ -1,6 +1,6 @@
 # vegaTech
 
-Projeto feito em NodeJS usando o express e o sequelize para a iteração com o banco de dados
+Projeto feito em NodeJS usando o express e o sequelize para a interação com o banco de dados
 
 ## Instruções
 
